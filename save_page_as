@@ -10,11 +10,11 @@ if ! xdotool --help &>/dev/null; then
     exit 1
 fi
 
-load_wait_time=4
+load_wait_time=8
 save_wait_time=8
 scriptname="$(basename "$0")"
 destination="."
-browser="google-chrome"
+browser="firefox"
 suffix=""
 url=""
 
@@ -149,19 +149,19 @@ fi
 
 # Activate the ${browser} window, and "press" F12 to open Dev tool
 xdotool windowactivate "${browser_wid}" key --clearmodifiers "F12"
-sleep 1 # Wait for dev tool to open
+sleep 2 # Wait for dev tool to open
 # Activate the console tab of dev tools
 xdotool windowactivate "${browser_wid}" key --clearmodifiers "ctrl+shift+k"
-sleep 1 # Wait for console tab to be ready
+sleep 2 # Wait for console tab to be ready
 # Encode document body
-xdotool windowactivate "${browser_wid}" key --clearmodifiers v a r space t e x t equal d o c u m e n t period c r e a t e T e x t N o d e parenleft d o c u m e n t period b o d y period i n n e r H T M L parenright semicolon space d o c u m e n t period b o d y period i n n e r H T M L equal quotedbl quotedbl semicolon space d o c u m e n t period b o d y period a p p e n d C h i l d parenleft t e x t parenright semicolon Return
-sleep 1 # Wait for html to render
+xdotool windowactivate "${browser_wid}" key --clearmodifiers v a r space t e x t equal d o c u m e n t period c r e a t e T e x t N o d e parenleft d o c u m e n t period b o d y period i n n e r H T M L parenright semicolon space d o c u m e n t period b o d y period i n n e r H T M L equal quotedbl quotedbl semicolon space d o c u m e n t period b o d y period a p Tab C h Tab parenleft t e x t parenright semicolon Return
+sleep 2 # Wait for html to render
 # Close dev tools
 xdotool windowactivate "${browser_wid}" key --clearmodifiers "F12"
 # "press" ctrl+s
 xdotool windowactivate "${browser_wid}" key --clearmodifiers "ctrl+s"
 
-sleep 1 # Give 'Save as' dialog box time to show up
+sleep 2 # Give 'Save as' dialog box time to show up
 
 # Resolve the expected title name for save file dialog box (chrome & firefox differ in this regard)
 if [[ "${browser}" == "firefox" ]]; then
